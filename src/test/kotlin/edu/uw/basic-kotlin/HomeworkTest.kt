@@ -23,6 +23,14 @@ class HomeworkTest {
     @Test fun when_Bonjour() {
         assertEquals(whenFn("Bonjour"), "Say what?")
     }
+    @Test fun when_Namaste() {
+        assertEquals(whenFn("Namaste"), "Say what?")
+    }
+
+    @Test fun IDontUnderstand() {
+        assertEquals(whenFn(true), "I don't understand")
+    }
+    
     @Test fun when_ints() {
         val when_tests = listOf(
             0 to "zero",
@@ -62,6 +70,16 @@ class HomeworkTest {
         }
     }
 
+    @Test
+    fun testAddFunction() {
+        assertEquals(15, add(7, 8))
+    }
+
+    @Test
+    fun testSubFunction() {
+        assertEquals(3, sub(10, 7))
+    }
+
     @Test fun mathOp_tests() {
         assertEquals(4, mathOp(2, 2, { l,r -> l+r} ))
         assertEquals(4, mathOp(2, 2, ::add ))
@@ -76,6 +94,11 @@ class HomeworkTest {
         assertEquals("Ted", p1.firstName )
         assertEquals(48, p1.age)
         assertEquals("[Person firstName:Ted lastName:Neward age:48]", p1.debugString)
+    }
+
+    @Test fun testPersonDebugString() {
+        val person = Person("John", "Doe", 30)
+        assertEquals("[Person firstName:John lastName:Doe age:30]", person.debugString)
     }
 
     // =================
@@ -118,5 +141,14 @@ class HomeworkTest {
             assertEquals(result.amount, (pair.first + pair.second).amount)
             assertEquals(result.currency, (pair.first + pair.second).currency)
         }
+    }
+
+    @Test
+    fun testMoneyAddition() {
+        val money1 = Money(10, "USD")
+        val money2 = Money(5, "GBP")
+        val resultMoney = money1 + money2
+        assertEquals(20, resultMoney.amount)
+        assertEquals("USD", resultMoney.currency)
     }
 }
